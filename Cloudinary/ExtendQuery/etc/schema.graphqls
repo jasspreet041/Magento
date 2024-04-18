@@ -1,0 +1,3 @@
+interface ProductInterface @typeResolver(class: "Magento\\CatalogGraphQl\\Model\\ProductInterfaceTypeResolverComposite") @doc(description: "The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes.") {
+    spinset: String @doc(description: "Spinset tag name of the product") @resolver(class: "Mag\\ExtendQuery\\Model\\Resolver\\Product\\GetCustomAttribute")
+}
