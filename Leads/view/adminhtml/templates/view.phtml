@@ -1,0 +1,59 @@
+<?php
+$formData = $block->getFormData();
+$excludeKeys = ['email_confirmation', 'recaptcha_token', 'fc_protocol', 'fc_hash', 'fc_search', 'fc_protocol', 'fc_pathname', 'fc_origin', 'fc_port', 'fc_hostname', 'oid'];
+?>
+<section class="admin__page-section order-view-account-information" style='width:70%;margin: auto;'>
+    <div class="admin__page-section-title">
+        <span class="title">Lead Details:-</span>
+    </div> 
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information1">
+            <div class="admin__page-section-item-content1">
+                <table class="admin__table-secondary order-information-table1">
+                    <tbody>
+                        <?php 
+                        $formPostData = json_decode($formData['form_post_json'], true);
+                        $formDataFinal = isset($formPostData['form_post_json']) ? json_decode($formPostData['form_post_json'], true) : [];
+                   
+                        if(!empty($formPostData) && !empty($formDataFinal)){
+                        foreach ($formDataFinal as $key => $value): 
+                            // Skip keys defined in $excludeKeys array
+                            if (in_array($key, $excludeKeys)) {
+                                continue;
+                            }
+                        ?>
+                            <tr>
+                                    <th style="width:20%"><?php 
+                                        if ($key === '00ND600000Sri1B') { $key = 'What do you want to design?'; }
+                                        echo ucwords(str_replace('_', ' ', $key)); ?></th>
+                                    <td><?php 
+                                        if (strpos($key, 'images') !== false) {    
+                                            $images = explode(',', $value);
+                                            foreach ($images as $image) {
+                                                echo $image . "<br>";
+                                            }
+                                        } elseif ($key == 'phone' || $key == 'telephone') {
+                                            ?><a href="tel:<?= $value; ?>"><?= $value; ?></a><?php
+                                        } else {
+                                            echo $value;
+                                        }
+                                        ?>
+                                    </td>
+                            </tr>
+                        <?php endforeach;
+                           } 
+                        ?>
+                        <tr>
+                            <th>Email</th>
+                            <td><a href="mailTo:<?= $formData['email']; ?>"><?= $formData['email']; ?></a></td>
+                        </tr>
+                        <tr>
+                            <th>Created At</th>
+                            <td><?= $formData['created_at']; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

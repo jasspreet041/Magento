@@ -1,0 +1,18 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+            	<!-- Data Source will be mentioned in listing xml -->
+                <item name="leads_listing_data_source" xsi:type="string">ForeverCompaniesLeadsCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="ForeverCompaniesLeadsCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+        	<!-- Table name to insert data and listing data -->
+            <argument name="mainTable" xsi:type="string">fc_form_submission</argument>
+            <!-- Resource model name -->
+            <argument name="resourceModel" xsi:type="string">ForeverCompanies\Leads\Model\ResourceModel\Post</argument>
+        </arguments>
+    </virtualType>
+</config>

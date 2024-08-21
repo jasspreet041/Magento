@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="ForeverCompanies_Leads::post" title="Forms Lead" module="ForeverCompanies_Leads" sortOrder="10" action="leads/post" resource="ForeverCompanies_Leads::post" parent="Magento_Sales::sales"/>
+    </menu>
+</config>
